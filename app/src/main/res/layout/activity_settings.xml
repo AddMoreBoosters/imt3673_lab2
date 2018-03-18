@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <EditText
+        android:id="@+id/text_edit_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/text_edit_url" />
+
+
+    <EditText
+        android:id="@+id/text_edit_num_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/text_hint_num_displayed"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_select_update_interval"/>
+
+    <ListView
+        android:id="@+id/list_update_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_confirm_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_button_confirm_settings"
+        android:onClick="onConfirmSettings"/>
 
 </LinearLayout>
