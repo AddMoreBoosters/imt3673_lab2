@@ -36,6 +36,7 @@ public class BackgroundUpdate extends IntentService
 
     @Override
     public void onCreate() {
+        super.onCreate();
         context = this;
         SharedPreferences sharedPreferences = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         int intervalChoice = sharedPreferences.getInt(getString(R.string.text_preference_interval), 0);
@@ -73,7 +74,7 @@ public class BackgroundUpdate extends IntentService
 
     public void update()
     {
-        MainActivity.updateLists();
+        MainActivity.updateLists(context);
     }
 
     @Nullable

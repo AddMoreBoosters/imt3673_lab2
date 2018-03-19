@@ -58,9 +58,8 @@ public class ReadRss extends AsyncTask<Void,Void,Exception>
 
             boolean insideItem = false;
             int eventType = xpp.getEventType();
-            int itemsFetched = 0;
 
-            while (eventType != XmlPullParser.END_DOCUMENT && itemsFetched < maxItemsFetched)
+            while (eventType != XmlPullParser.END_DOCUMENT && MainActivity.links.size() < maxItemsFetched)
             {
                 if (eventType == XmlPullParser.START_TAG)
                 {
@@ -86,7 +85,6 @@ public class ReadRss extends AsyncTask<Void,Void,Exception>
                 else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item"))
                 {
                     insideItem = false;
-                    ++itemsFetched;
                 }
                 eventType = xpp.next();
             }

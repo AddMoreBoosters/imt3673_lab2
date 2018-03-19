@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     ProgressBar loading;
     static ArrayList<String> titles;
     static ArrayList<String> links;
+    static ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,13 +61,14 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, MainActivity.titles);
+
+
+        adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, MainActivity.titles);
         listRss.setAdapter(adapter);
+        updateLists(MainActivity.this);
 
         loading = (ProgressBar) findViewById(R.id.loadingSymbol);
         loading.setVisibility(View.GONE);
-
-        updateLists();
 
         Intent intent = new Intent(this, BackgroundUpdate.class);
         startService(intent);
@@ -79,21 +81,22 @@ public class MainActivity extends AppCompatActivity
 
         if (resultCode == RESULT_OK)
         {
-            updateLists();
+            updateLists(MainActivity.this);
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        updateLists();
+        updateLists(MainActivity.this);
     }
 
-    public static void updateLists()
+    public static void updateLists(Context context)
     {
-        titles = new ArrayList<String>();
-        links = new ArrayList<String>();
-        new ReadRss(MainActivity.this).execute();
+        titles.clear();
+        links.clear();
+        new ReadRss(context).execute();
+        adapter.notifyDataSetChanged();
     }
 
     public void goToSettings(View view)
