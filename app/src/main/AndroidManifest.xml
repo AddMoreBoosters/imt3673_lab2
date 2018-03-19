@@ -20,7 +20,11 @@
         <activity android:name=".WebViewActivity" />
 
 
-        <service android:name=".MainActivity$BackgroundUpdate" />
+        <service
+            android:name=".MainActivity$BackgroundUpdate"
+            android:enabled="true"
+            android:exported="false"/>
+        <service android:name=".BackgroundUpdate" />
     </application>
 
 </manifest>
